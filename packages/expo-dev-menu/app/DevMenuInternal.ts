@@ -1,16 +1,6 @@
-import { NativeModulesProxy } from '@unimodules/core';
 import { DeviceEventEmitter, NativeModules, EventSubscription } from 'react-native';
 
 const DevMenu = NativeModules.ExpoDevMenuInternal;
-
-// Mock ExpoFontLoader unimodule - we don't have access to unimodules from dev menu app.
-if (!NativeModulesProxy.ExpoFontLoader) {
-  NativeModulesProxy.ExpoFontLoader = {
-    addListener() {},
-    removeListeners() {},
-    async loadAsync() {},
-  };
-}
 
 export type DevMenuAppInfoType = {
   appName: string;
@@ -88,4 +78,8 @@ export async function setSettingsAsync(settings: DevMenuSettingsType) {
 
 export function subscribeToCloseEvents(listener: () => void): EventSubscription {
   return DeviceEventEmitter.addListener('closeDevMenu', listener);
+}
+
+export async function loadFontsAsync(): Promise<void> {
+  return await DevMenu.loadFontsAsync();
 }

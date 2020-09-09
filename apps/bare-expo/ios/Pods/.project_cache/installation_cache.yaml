@@ -288,10 +288,12 @@ CACHE_KEYS:
       EXDevMenu:
         :debug: b1eba0b1d6e2b892cedf4546f1284ac1
         :release: b1eba0b1d6e2b892cedf4546f1284ac1
-    CHECKSUM: a40f21353b521fb721ae30452d5a89f8319d7d0f
+    CHECKSUM: 66bb2b59b4d10de1ce4a3920a2be9c3f222147db
     FILES:
       - "../../../../packages/expo-dev-menu/assets/dev-menu-packager-host"
       - "../../../../packages/expo-dev-menu/assets/EXDevMenuApp.ios.js"
+      - "../../../../packages/expo-dev-menu/assets/Ionicons.ttf"
+      - "../../../../packages/expo-dev-menu/assets/MaterialCommunityIcons.ttf"
       - "../../../../packages/expo-dev-menu/ios/DevMenuAppInstance.swift"
       - "../../../../packages/expo-dev-menu/ios/DevMenuGestureRecognizer.swift"
       - "../../../../packages/expo-dev-menu/ios/DevMenuManager.swift"
@@ -1231,7 +1233,7 @@ CACHE_KEYS:
   Pods-BareExpo:
     BUILD_SETTINGS_CHECKSUM:
       Debug: 2376812207103a5cb27166faed1e7156
-      Release: 2376812207103a5cb27166faed1e7156
+      Release: 54cd016a132b8e3f39b979da82ecabf0
     FILES:
       - "${PODS_CONFIGURATION_BUILD_DIR}/EXDevMenu/EXDevMenu.bundle"
       - "${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle"
@@ -1241,7 +1243,7 @@ CACHE_KEYS:
   Pods-BareExpoTests:
     BUILD_SETTINGS_CHECKSUM:
       Debug: 7b3d396c9e7e40fcd86b4c7f7061e278
-      Release: 7b3d396c9e7e40fcd86b4c7f7061e278
+      Release: 5ddbdc018e1ac68550b6ff2d7a766119
   PromisesObjC:
     BUILD_SETTINGS_CHECKSUM:
       PromisesObjC:

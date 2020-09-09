@@ -324,7 +324,7 @@ def reactProperties = new Properties()
 def reactNative = new File("$projectDir/../../versioned-react-native")
 
 // WHEN_VERSIONING_REMOVE_FROM_HERE
-reactNative = new File("$projectDir/../../react-native-lab/react-native")
+reactNative = new File("$projectDir/..")
 // WHEN_VERSIONING_REMOVE_TO_HERE
 
 file("$reactNative/ReactAndroid/gradle.properties").withInputStream { reactProperties.load(it) }
@@ -680,6 +680,7 @@ task cleanNdkLibs(type: Exec) {
 task packageNdkLibs(dependsOn: buildReanimated, type: Copy) {
   from("$buildDir/reanimated-ndk/all")
   include("**/lib*reanimated*.so")
+  include("**/lib*turbomodulejsijni*.so")
   into("$projectDir/src/main/JNILibs")
 }
 
