@@ -2,6 +2,8 @@
 
 #import <EXUpdates/EXUpdatesBaseRawManifest.h>
 
+#import <UIKit/UIKit.h>
+
 @implementation EXUpdatesBaseRawManifest
 
 - (instancetype)initWithRawManifestJSON:(NSDictionary *)rawManifestJSON {
@@ -17,7 +19,7 @@
 
 # pragma mark - Field Getters
 
-- (nullable NSString *)rawID {
+- (NSString *)legacyId {
   return [self.rawManifestJSON nullableStringForKey:@"id"];
 }
 
@@ -57,11 +59,32 @@
   return [self.rawManifestJSON nullableStringForKey:@"orientation"];
 }
 
+- (nullable NSDictionary *)experiments {
+  return [self.rawManifestJSON nullableDictionaryForKey:@"experiments"];
+}
+
+- (nullable NSDictionary *)developer {
+  return [self.rawManifestJSON nullableDictionaryForKey:@"developer"];
+}
+
+- (nullable NSString *)facebookAppId {
+  return [self.rawManifestJSON nullableStringForKey:@"facebookAppId"];
+}
+
+- (nullable NSString *)facebookApplicationName {
+  return [self.rawManifestJSON nullableStringForKey:@"facebookDisplayName"];
+}
+
+- (BOOL)facebookAutoInitEnabled {
+  NSNumber *enabledNumber = [self.rawManifestJSON nullableNumberForKey:@"facebookAutoInitEnabled"];
+  return enabledNumber != nil && [enabledNumber boolValue];
+}
+
 # pragma mark - Derived Methods
 
 - (BOOL)isDevelopmentMode {
   NSDictionary *manifestPackagerOptsConfig = [self.rawManifestJSON nullableDictionaryForKey:@"packagerOpts"];
-  return ([self.rawManifestJSON nullableDictionaryForKey:@"developer"] != nil && manifestPackagerOptsConfig != nil && [@(YES) isEqualToNumber:manifestPackagerOptsConfig[@"dev"]]);
+  return (self.developer != nil && manifestPackagerOptsConfig != nil && [@(YES) isEqualToNumber:manifestPackagerOptsConfig[@"dev"]]);
 }
 
 - (BOOL)isDevelopmentSilentLaunch {
@@ -74,8 +97,7 @@
 }
 
 - (BOOL)isUsingDeveloperTool {
-  NSDictionary *manifestDeveloperConfig = self.rawManifestJSON[@"developer"];
-  BOOL isDeployedFromTool = (manifestDeveloperConfig && manifestDeveloperConfig[@"tool"] != nil);
+  BOOL isDeployedFromTool = (self.developer && self.developer[@"tool"] != nil);
   return (isDeployedFromTool);
 }
 
@@ -118,6 +140,13 @@
                                          @[@"ios", @"splash", @"resizeMode"],
                                          @[@"splash", @"resizeMode"],
                                        ]];
+}
+
+- (nullable NSString *)iosGoogleServicesFile {
+  if (self.iosConfig) {
+    return [self.iosConfig nullableStringForKey:@"googleServicesFile"];
+  }
+  return nil;
 }
 
 + (NSString * _Nullable)getStringFromManifest:(NSDictionary *)manifest

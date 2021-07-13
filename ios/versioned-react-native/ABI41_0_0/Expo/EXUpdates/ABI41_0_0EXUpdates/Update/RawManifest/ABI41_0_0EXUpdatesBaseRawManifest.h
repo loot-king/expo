@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 # pragma mark - Common ABI41_0_0EXUpdatesRawManifestBehavior
 
-- (nullable NSString *)rawID;
+- (NSString *)legacyId;
 - (nullable NSString *)revisionId;
 - (nullable NSString *)slug;
 - (nullable NSString *)appKey;
@@ -23,6 +23,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSDictionary *)iosConfig;
 - (nullable NSString *)hostUri;
 - (nullable NSString *)orientation;
+- (nullable NSDictionary *)experiments;
+- (nullable NSDictionary *)developer;
+- (nullable NSString *)facebookAppId;
+- (nullable NSString *)facebookApplicationName;
+- (BOOL)facebookAutoInitEnabled;
 
 - (BOOL)isDevelopmentMode;
 - (BOOL)isDevelopmentSilentLaunch;
@@ -32,6 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSString *)iosSplashBackgroundColor;
 - (nullable NSString *)iosSplashImageUrl;
 - (nullable NSString *)iosSplashImageResizeMode;
+- (nullable NSString *)iosGoogleServicesFile;
 
 @end
 
